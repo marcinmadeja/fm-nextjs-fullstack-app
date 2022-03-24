@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken'
+import { NextApiRequest, NextApiResponse } from 'next'
 import prisma from './prisma'
 
 export const validateRoute = (handler) => {
   return async (req: NextApiRequest, res: NextApiResponse) => {
-    // const { TRAX_ACCESS_TOKEN: token } = req.cookie
-    const token = req.cookie.TRAX_ACCESS_TOKEN
+    const token = req.cookies.TRAX_ACCESS_TOKEN
 
     if (token) {
       let user
@@ -18,16 +18,16 @@ export const validateRoute = (handler) => {
         if (!user) {
           throw new Error('Not real user')
         }
-      } catch (err) {
+      } catch (error) {
         res.status(401)
-        res.json({ error: 'Not Authorized' })
+        res.json({ error: 'Not Authorizied' })
         return
       }
 
-      return hander(req, res, user)
+      return handler(req, res, user)
     }
 
     res.status(401)
-    res.json({ error: 'Not Authorized' })
+    res.json({ error: 'Not Authorizied' })
   }
 }
