@@ -7,14 +7,20 @@ import prisma from '../lib/prisma'
 
 const Home = ({ artists }) => {
   const { user } = useMe()
+
+  const firstName = user?.firstName ?? ''
+  const lastName = user?.lastName ?? ''
+  const title = `${firstName} ${lastName}`
+  const playlistsCount = user?.playlistsCount ?? 0
+
   return (
     <GradientLayout
       roundImage
       color="gray"
       subtitle="profile"
       image="https://dl.dropboxusercontent.com/s/bgiv0ssz3xpotz9/peep.png?dl=0"
-      title="title"
-      description="title"
+      title={title}
+      description={`${playlistsCount} public playlists`}
     >
       <Box color="white" paddingX="40px">
         <Box marginBottom="40px">
