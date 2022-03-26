@@ -15,7 +15,7 @@ const PlayerLayout = ({ children }) => {
       </Box>
 
       <Box marginLeft="250px" marginBottom="100px">
-        {children}
+        <Box height="calc(100vh - 100px)">{children}</Box>
       </Box>
 
       <Box position="absolute" bottom="0" left="0">
