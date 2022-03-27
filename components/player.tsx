@@ -78,7 +78,7 @@ const Player = ({ songs, activeSong }) => {
   }
 
   const nextSong = () => {
-    setIndex((state) => {
+    setIndex((state: any) => {
       if (shuffle) {
         const next = Math.floor(Math.random() * songs.length)
 
